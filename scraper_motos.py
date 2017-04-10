@@ -15,4 +15,9 @@ motos_soup = BeautifulSoup(motos_req.text, "html.parser")
 ads_number_text = motos_soup.find_all("h1", {"class": "floatleft"})
 num_ads = int(re.findall(r'[^ ]*\.[^ ]*', ads_number_text[0].contents[0])[0].replace('.',''))
 
-print num_ads
+#There are usually thirty ads per page
+ads_per_page = 30
+first_page = 1
+last_page = num_ads / ads_per_page
+
+print last_page
