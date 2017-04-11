@@ -5,7 +5,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import requests
 import re
-import unicodedata
+from tools import remove_accents as ra
 
 #BeautifulSoup object
 motor_url = 'http://motos.coches.net/ocasion/?pg=1&or=-1&fi=SortDate'
@@ -27,5 +27,21 @@ matrioska_header = ['city', 'brand', 'model', 'type', 'cc', 'color', 'km', 'year
 for i in range(first_page, 5):
 	sub_url = 'http://motos.coches.net/ocasion/?pg=%d&or=-1&fi=SortDate' %i
 	sub_req = requests.get(sub_url, allow_redirects = False)
-	if sub_req.status_code = 200:
-		print sub_url
+	print 'sub_url'
+	print sub_url
+	if sub_req.status_code == 200:
+		sub_soup = BeautifulSoup(sub_req.text, "html.parser")
+		links_list = sub_soup.find_all("a", {"class": "lnkad"}, href = True)
+		print "ok link_list"
+		for link in links_list:
+			link_req = requests.get("http://motos.net" + link['href'])
+			link_soup = BeautifulSoup(link_req.text, "html.parser")
+			
+			#If the ad exists, there is a h1 tag with class 'mgbottom10 floatleft'
+			if len(link_soup.find_all("h1", class_= 'mgbottom10 floatleft')) != 0:
+				
+				title = link_soup.find_all("span", itemprop = "title")
+				if len(title) == 4:
+					bike_city, bike_brand, bike_model = ra(title[1].get_text()), ra(title[2].get_text()),ra(title[3].get_text())
+					print bike_city, bike_brand, bike_model
+
