@@ -48,7 +48,8 @@ for i in range(first_page, 5):
 					#price
 					try:
 						bike_price = int(''.join(re.findall(r'\b\d+\b', link_soup.find(class_='pvp').contents[0])))
-                    except:
-                        print "price error in http://motos.coches.net" + link['href']
-                    print bike_price
+					except:
+						print "price error in http://motos.coches.net" + link['href']
+
+					print bike_price
 
