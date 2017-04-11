@@ -58,7 +58,14 @@ for i in range(first_page, 5):
 						bike_type = ''
 						print "type error in http://motos.coches.net" + link['href']
 
-					print bike_city, bike_brand, bike_model, bike_type, bike_price
+					#cc
+					try:
+						bike_cc = int(''.join(re.findall(r'\b\d+\b', link_soup.find(id='litCC').contents[1].strip())))
+					except:
+						bike_cc = ''
+						print "cc error in http://motos.coches.net" + link['href']
+
+					print bike_city, bike_brand, bike_model, bike_type, bike_cc, bike_price
 
 					
 
