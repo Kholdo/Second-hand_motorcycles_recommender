@@ -8,7 +8,7 @@ import re
 import unicodedata
 
 #BeautifulSoup object
-motor_url = 'http://motos.coches.net/ocasion/?pg=2&Tops=1&or=-1&fi=SortDate'
+motor_url = 'http://motos.coches.net/ocasion/?pg=1&or=-1&fi=SortDate'
 motos_req = requests.get(motor_url)
 motos_soup = BeautifulSoup(motos_req.text, "html.parser")
 
@@ -20,4 +20,12 @@ ads_per_page = 30
 first_page = 1
 last_page = num_ads / ads_per_page
 
-print last_page
+#Lets go to scrape the urls
+matrioska_tb = []
+matrioska_header = ['city', 'brand', 'model', 'type', 'cc', 'color', 'km', 'year', 'price']
+
+for i in range(first_page, 5):
+	sub_url = 'http://motos.coches.net/ocasion/?pg=%d&or=-1&fi=SortDate' %i
+	sub_req = requests.get(sub_url, allow_redirects = False)
+	if sub_req.status_code = 200:
+		print sub_url
