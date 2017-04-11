@@ -43,7 +43,6 @@ for i in range(first_page, 5):
 				title = link_soup.find_all("span", itemprop = "title")
 				if len(title) == 4:
 					bike_city, bike_brand, bike_model = ra(title[1].get_text()), ra(title[2].get_text()),ra(title[3].get_text())
-					print bike_city, bike_brand, bike_model
 
 					#price
 					try:
@@ -54,12 +53,12 @@ for i in range(first_page, 5):
 
 					#type
 					try:
-						bike_type = link_soup.find(id='litTipo').contents[1].strips()
+						bike_type = link_soup.find(id = 'litTipo').contents[1].strip()
 					except:
 						bike_type = ''
 						print "type error in http://motos.coches.net" + link['href']
 
-					print bike_price, bike_type
+					print bike_city, bike_brand, bike_model, bike_type, bike_price
 
 					
 
