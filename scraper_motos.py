@@ -63,7 +63,7 @@ for i in range(first_page, 2):
 						print "color error in http://motos.coches.net" + link['href']
 					#km
 					try: 
-						bike_km = re.findall(r'Año:</b>([^<]*)'), link_req.text)[0].strip().replace('.', '')
+						bike_km = re.findall(r'<b>Km:</b>([^<]*)', link_req.text)[0].strip().replace('.', '')
 					except:
 						bike_km = ''
 						print "km error in http://motos.coches.net" + link['href']
