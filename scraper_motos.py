@@ -20,7 +20,7 @@ last_page = num_ads / ads_per_page
 matrioska_tb = []
 matrioska_header = ['city', 'brand', 'model', 'type', 'cc', 'color', 'km', 'year', 'price']
 
-for i in range(first_page, 5):
+for i in range(first_page, 2):
 	sub_url = 'http://motos.coches.net/ocasion/?pg=%d&or=-1&fi=SortDate' %i
 	sub_req = requests.get(sub_url, allow_redirects = False)
 	print 'sub_url'
