@@ -67,8 +67,14 @@ for i in range(first_page, 2):
 					except:
 						bike_km = ''
 						print "km error in http://motos.coches.net" + link['href']
+					#year
+					try:
+						bike_year = re.findall(r'Año:</b>([^<]*)', link_req.text.encode('utf8'))[0].strip().replace('.','')
+					except:
+						bike_year = ''
+						print "year error in http://motos.coches.net" + link['href']
 						
-					print bike_city, bike_brand, bike_model, bike_type, bike_color, bike_cc, bike_km, bike_price
+					print bike_city, bike_brand, bike_model, bike_type, bike_color, bike_cc, bike_km, bike, year, bike_price
 
 					
 
