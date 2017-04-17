@@ -1,5 +1,9 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 #Scraper motos.net
 #libraries
+
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
@@ -64,6 +68,7 @@ for i in range(first_page, 2):
 					#km
 					try: 
 						bike_km = re.findall(r'<b>Km:</b>([^<]*)', link_req.text)[0].strip().replace('.', '')
+						bike_km = '' if bike_km == '-' else bike_km
 					except:
 						bike_km = ''
 						print "km error in http://motos.coches.net" + link['href']
@@ -74,7 +79,7 @@ for i in range(first_page, 2):
 						bike_year = ''
 						print "year error in http://motos.coches.net" + link['href']
 						
-					print bike_city, bike_brand, bike_model, bike_type, bike_color, bike_cc, bike_km, bike, year, bike_price
+					print bike_city, bike_brand, bike_model, bike_type, bike_color, bike_cc, bike_km, bike_year, bike_price
 
 					
 
