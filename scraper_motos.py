@@ -4,7 +4,6 @@
 #Scraper motos.net
 
 def scraper_motos():
-
 	import pandas as pd
 	from bs4 import BeautifulSoup
 	import requests
@@ -82,10 +81,5 @@ def scraper_motos():
 						
 						matrioska_tb.append([bike_city, bike_brand, bike_model, bike_type, bike_cc, bike_color, bike_km, bike_year, bike_price])
 
-	matrioska_df = pd.Dataframe(matrioska_tb, columns = matrioska_header)
+	matrioska_df = pd.DataFrame(matrioska_tb, columns = matrioska_header)
 	return matrioska_df
-
-
-
-					
-
