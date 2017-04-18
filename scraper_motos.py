@@ -17,6 +17,7 @@ def scraper_motos():
 
 	ads_number_text = motos_soup.find_all("h1", {"class": "floatleft"})
 	num_ads = int(re.findall(r'[^ ]*\.[^ ]*', ads_number_text[0].contents[0])[0].replace('.',''))
+
 	#There are usually thirty ads per page
 	ads_per_page = 30
 	first_page = 1
@@ -25,13 +26,12 @@ def scraper_motos():
 	matrioska_tb = []
 	matrioska_header = ['city', 'brand', 'model', 'type', 'cc', 'color', 'km', 'year', 'price']
 
-	d = datetime.now()
-	print 'Start time: %s' % d
-	for i in range(first_page, 2):
+	print 'Start time: %s' % datetime.now()
+	print 'num_ads %d' %num_ads
+
+	for i in range(first_page, last_page):
 		sub_url = 'http://motos.coches.net/ocasion/?pg=%d&or=-1&fi=SortDate' %i
 		sub_req = requests.get(sub_url, allow_redirects = False)
-		print 'sub_url'
-		print sub_url
 		if sub_req.status_code == 200:
 			sub_soup = BeautifulSoup(sub_req.text, "html.parser")
 			links_list = sub_soup.find_all("a", {"class": "lnkad"}, href = True)
@@ -41,14 +41,15 @@ def scraper_motos():
 				#If the ad exists, there is a h1 tag with class 'mgbottom10 floatleft'
 				if len(link_soup.find_all("h1", class_= 'mgbottom10 floatleft')) != 0:				
 					title = link_soup.find_all("span", itemprop = "title")
-					if len(title) == 4:
+					try:
+						bike_price = int(''.join(re.findall(r'\b\d+\b', link_soup.find(class_='pvp').contents[0])))
+					except:
+						bike_price = ''
+						print "price error in http://motos.coches.net" + link['href']
+					if len(title) == 4 and bike_price != '':						
+						#city, brand, model
 						bike_city, bike_brand, bike_model = ra(title[1].get_text()), ra(title[2].get_text()),ra(title[3].get_text())
-						#price
-						try:
-							bike_price = int(''.join(re.findall(r'\b\d+\b', link_soup.find(class_='pvp').contents[0])))
-						except:
-							bike_price = ''
-							print "price error in http://motos.coches.net" + link['href']
+
 						#type
 						try:
 							bike_type = link_soup.find(id = 'litTipo').contents[1].strip()
