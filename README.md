@@ -1,4 +1,4 @@
-#TFM KSchool -Occasion_vehicles_value_estimator
+#TFM KSchool - Second-hand_vehicles_price_estimator
 #Koldo Pina 2017
 #Packages
 appdirs==1.4.3
