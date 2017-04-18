@@ -4,6 +4,7 @@
 #Scraper motos.net
 
 def scraper_motos():
+	from datetime import datetime
 	import pandas as pd
 	from bs4 import BeautifulSoup
 	import requests
@@ -24,6 +25,8 @@ def scraper_motos():
 	matrioska_tb = []
 	matrioska_header = ['city', 'brand', 'model', 'type', 'cc', 'color', 'km', 'year', 'price']
 
+	d = datetime.now()
+	print 'Start time: %s' % d
 	for i in range(first_page, 2):
 		sub_url = 'http://motos.coches.net/ocasion/?pg=%d&or=-1&fi=SortDate' %i
 		sub_req = requests.get(sub_url, allow_redirects = False)
@@ -81,5 +84,6 @@ def scraper_motos():
 						
 						matrioska_tb.append([bike_city, bike_brand, bike_model, bike_type, bike_cc, bike_color, bike_km, bike_year, bike_price])
 
+	print 'End time: %s' % datetime.now()
 	matrioska_df = pd.DataFrame(matrioska_tb, columns = matrioska_header)
 	return matrioska_df
