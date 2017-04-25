@@ -34,8 +34,17 @@ def scraper_coches():
 				link_soup = BeautifulSoup(link_req.text, "html.parser")
 				# Brand
 				car_brand = link_soup.find_all("a", {"data-tagging": "c_detail_bread_ad_brand"})[0].contents[0]
+				# Model
+				car_model = link_soup.find_all("a", {"data-tagging": "c_detail_bread_ad_model"})[0].contents[0]
+				# Province
+				car_province = link_soup.find_all("a", {"data-tagging": "c_detail_bread_ad_province"})[0].contents[0]
+				# price
+				car_price_text = link_soup.find_all("span", {"class": "t-h1 mt-AdDetailHeader-price u-c--red"})[0].contents[0]
+				car_price = int(re.findall(r'[0-9]*\.[0-9]*', car_price_text)[0].replace('.', ''))
 
-				matrioska_tb.append([car_brand])
+
+
+				matrioska_tb.append([car_brand, car_model, car_province, car_price])
 
 	print 'End time: %s' % datetime.now()
 	return matrioska_tb
