@@ -46,8 +46,13 @@ def scraper_coches():
 				#car_year
 				car_year = int(features_list[0].get_text().strip())
 
+				for index, item in enumerate(features_list):
+					#km
+					if len(re.findall(r'[ ]km', item.get_text())) > 0:
+						car_km = int(re.findall(r'[0-9]*\.[0-9]*', item.get_text().strip())[0].replace('.', ''))
 
-				matrioska_tb.append([car_brand, car_model, car_province, car_price])
+
+				matrioska_tb.append([car_brand, car_model, car_province, car_price, car_year, car_km])
 
 	print 'End time: %s' % datetime.now()
 	return matrioska_tb
