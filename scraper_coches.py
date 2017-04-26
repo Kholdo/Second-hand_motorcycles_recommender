@@ -41,12 +41,13 @@ def scraper_coches():
 				# price
 				car_price_text = link_soup.find_all("span", {"class": "t-h1 mt-AdDetailHeader-price u-c--red"})[0].contents[0]
 				car_price = int(re.findall(r'[0-9]*\.[0-9]*', car_price_text)[0].replace('.', ''))
-
+				#Rest of features
+				features_list = link_soup.find_all("li", {"class": "mt-DataGrid-item"})
+				#car_year
+				car_year = int(features_list[0].get_text().strip())
 
 
 				matrioska_tb.append([car_brand, car_model, car_province, car_price])
 
 	print 'End time: %s' % datetime.now()
 	return matrioska_tb
-
-scraper_coches()
