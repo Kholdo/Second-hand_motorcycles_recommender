@@ -6,7 +6,7 @@
 def scraper_coches():
 	from datetime import datetime
 	import pandas as pd
-	from bs4 import BeautifulSoup
+	from bs4 import BeautifulSoup		
 	import requests
 	import re
 	#BeautifulSoup object
@@ -48,3 +48,5 @@ def scraper_coches():
 
 	print 'End time: %s' % datetime.now()
 	return matrioska_tb
+
+scraper_coches()
