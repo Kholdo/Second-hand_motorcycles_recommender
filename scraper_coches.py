@@ -69,7 +69,7 @@ def scraper_coches():
 						car_fuel = re.findall(r'Diesel|Gasolina', item.get_text().strip())[0]
 
 
-				matrioska_tb.append(map(ar,[car_brand, car_model, 
+				matrioska_tb.append(map(ra,[car_brand, car_model, 
 									car_province, car_price, 
 									car_year, car_km, 
 									car_doors, car_seats,
