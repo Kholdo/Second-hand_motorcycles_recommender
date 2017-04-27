@@ -51,17 +51,20 @@ def scraper_coches():
 					if len(re.findall(r'[ ]km', item.get_text())) > 0:
 						car_km = int(re.findall(r'[0-9]*\.[0-9]*', item.get_text().strip())[0].replace('.', ''))
 					# Doors
-					if len(re.findall('[ ]Puertas', item.get_text())) > 0:
+					if len(re.findall(r'[ ]Puertas', item.get_text())) > 0:
 						car_doors = int(re.findall(r'[0-9]', item.get_text().strip())[0].replace('.', ''))
 					# Seats
-					if len(re.findall('[ ]Plazas', item.get_text())) > 0:
+					if len(re.findall(r'[ ]Plazas', item.get_text())) > 0:
 						car_seats = int(re.findall(r'[0-9]', item.get_text().strip())[0].replace('.', ''))
 					# hp
-					if len(re.findall('[ ]cv', item.get_text())) > 0:
+					if len(re.findall(r'[ ]cv', item.get_text())) > 0:
 						car_hp = int(re.findall(r'[0-9]*', item.get_text().strip())[0].replace('.', ''))
 					# gear
-					if len(re.findall('[ ]Cambio', item.get_text())) > 0:
+					if len(re.findall(r'[ ]Cambio', item.get_text())) > 0:
 						car_gear = int(re.findall(r'[0-9]*', item.get_text().strip())[0].replace('.', ''))
+					# fuel
+					if len(re.findall(r'Diesel|Gasolina', item.get_text())) > 0:
+						car_fuel = int(re.findall(r'Diesel|Gasolina', item.get_text().strip())[0])
 
 
 				matrioska_tb.append([car_brand, car_model, 
@@ -69,6 +72,7 @@ def scraper_coches():
 									car_year, car_km, 
 									car_doors, car_seats,
 									car_hp, car_gear,
+									car_fuel,
 									])
 
 	print 'End time: %s' % datetime.now()
