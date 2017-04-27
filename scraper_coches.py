@@ -69,13 +69,13 @@ def scraper_coches():
 						car_fuel = re.findall(r'Diesel|Gasolina', item.get_text().strip())[0]
 
 
-				matrioska_tb.append(map(ra,[car_brand, car_model, 
-									car_province, car_price, 
+				matrioska_tb.append([ra(car_brand), ra(car_model), 
+									ra(car_province), car_price, 
 									car_year, car_km, 
 									car_doors, car_seats,
-									car_hp, car_gear,
-									car_fuel,
-									]))
+									car_hp, ra(car_gear),
+									ra(car_fuel),
+									])
 
 	print 'End time: %s' % datetime.now()
 	return matrioska_tb
