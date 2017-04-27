@@ -19,12 +19,13 @@ def scraper_coches():
 
 	#Lets go to scrape the urls
 	matrioska_tb = []
-	matrioska_header = ['province', 'brand', 'model']
+	matrioska_header = ['brand', 'model', 'province', 'price', 'year', 'km', 'doors',
+						'seats', 'hp', 'gear', 'fuel', 'poll']
 
 	print 'Start time: %ss' % datetime.now()
 	print 'num_pages %d' %num_pages
 
-	for i in range(1, 2):
+	for i in range(1, 10):
 		sub_url = 'http://www.coches.net/segunda-mano/?pg=%d' %i
 		sub_req = requests.get(sub_url, allow_redirects = False)
 		if sub_req.status_code == 200:
@@ -41,7 +42,7 @@ def scraper_coches():
 				car_province = link_soup.find_all("a", {"data-tagging": "c_detail_bread_ad_province"})[0].contents[0]
 				# price
 				car_price_text = link_soup.find_all("span", {"class": "t-h1 mt-AdDetailHeader-price u-c--red"})[0].contents[0]
-				car_price = int(re.findall(r'[0-9]*\.[0-9]*', car_price_text)[0].replace('.', ''))
+				car_price = int(re.findall(r'[0-9]*\.[0-9]*|.*[0-9]', car_price_text)[0].replace('.', ''))
 				#Rest of features
 				features_list = link_soup.find_all("li", {"class": "mt-DataGrid-item"})
 				#car_year
@@ -50,7 +51,7 @@ def scraper_coches():
 				for index, item in enumerate(features_list):
 					#km
 					if len(re.findall(r'[ ]km', item.get_text())) > 0:
-						car_km = int(re.findall(r'[0-9]*\.[0-9]*', item.get_text().strip())[0].replace('.', ''))
+						car_km = int(re.findall(r'[0-9]*\.[0-9]*|.*[0-9]', item.get_text().strip())[0].replace('.', ''))
 					# Doors
 					if len(re.findall(r'[ ]Puertas', item.get_text())) > 0:
 						car_doors = int(re.findall(r'[0-9]', item.get_text().strip())[0].replace('.', ''))
@@ -62,13 +63,15 @@ def scraper_coches():
 						car_hp = int(re.findall(r'[0-9]*', item.get_text().strip())[0].replace('.', ''))
 					# gear
 					if len(re.findall(r'[ ]Cambio', item.get_text())) > 0:
-						car_gear = re.findall(r'.*\s([^ ]*)', item.get_text().strip())[0]
+						car_gear = unicode(re.findall(r'.*\s([^ ]*)', item.get_text().strip())[0])
 					# fuel
 					if len(re.findall(r'Diesel|Gasolina', item.get_text())) > 0:
-						car_fuel = re.findall(r'Diesel|Gasolina', item.get_text().strip())[0]
+						car_fuel = unicode(re.findall(r'Diesel|Gasolina', item.get_text().strip())[0])
 					# poll
 					if len(re.findall(r'[ ]gr/km', item.get_text())) > 0:
 						car_poll = re.findall(r'[0-9]*', item.get_text().strip())[0]
+					else:
+						car_poll = ''
 
 
 				matrioska_tb.append([ra(car_brand), ra(car_model), 
