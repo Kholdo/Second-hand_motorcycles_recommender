@@ -70,8 +70,6 @@ def scraper_coches():
 					# poll
 					if len(re.findall(r'[ ]gr/km', item.get_text())) > 0:
 						car_poll = re.findall(r'[0-9]*', item.get_text().strip())[0]
-					else:
-						car_poll = ''
 
 
 				matrioska_tb.append([ra(car_brand), ra(car_model), 
