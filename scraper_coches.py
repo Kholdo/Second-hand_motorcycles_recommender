@@ -9,6 +9,7 @@ def scraper_coches():
 	from bs4 import BeautifulSoup		
 	import requests
 	import re
+	from tools import remove_accents as ra
 	#BeautifulSoup object
 	coches_url = 'http://www.coches.net/segunda-mano/?pg=2'
 	coches_req = requests.get(coches_url)
@@ -31,6 +32,7 @@ def scraper_coches():
 			links_list = sub_soup.find_all("a", {"class": "mt-CardAd-link"}, href = True)
 			for link in links_list:
 				link_req = requests.get("http://www.coches.net" + link['href'])
+				print "http://www.coches.net" + link['href']
 				link_soup = BeautifulSoup(link_req.text, "html.parser")
 				# Brand
 				car_brand = link_soup.find_all("a", {"data-tagging": "c_detail_bread_ad_brand"})[0].contents[0]
@@ -61,19 +63,19 @@ def scraper_coches():
 						car_hp = int(re.findall(r'[0-9]*', item.get_text().strip())[0].replace('.', ''))
 					# gear
 					if len(re.findall(r'[ ]Cambio', item.get_text())) > 0:
-						car_gear = int(re.findall(r'[0-9]*', item.get_text().strip())[0].replace('.', ''))
+						car_gear = re.findall(r'.*\s([^ ]*)', item.get_text().strip())[0]
 					# fuel
 					if len(re.findall(r'Diesel|Gasolina', item.get_text())) > 0:
-						car_fuel = int(re.findall(r'Diesel|Gasolina', item.get_text().strip())[0])
+						car_fuel = re.findall(r'Diesel|Gasolina', item.get_text().strip())[0]
 
 
-				matrioska_tb.append([car_brand, car_model, 
+				matrioska_tb.append(map(ar,[car_brand, car_model, 
 									car_province, car_price, 
 									car_year, car_km, 
 									car_doors, car_seats,
 									car_hp, car_gear,
 									car_fuel,
-									])
+									]))
 
 	print 'End time: %s' % datetime.now()
 	return matrioska_tb
