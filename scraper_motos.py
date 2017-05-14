@@ -24,7 +24,7 @@ def scraper_motos():
 	last_page = num_ads / ads_per_page
 	#Lets go to scrape the urls
 	matrioska_tb = []
-	matrioska_header = ['city', 'brand', 'model', 'type', 'cc', 'color', 'km', 'year', 'price']
+	matrioska_header = ['city', 'brand', 'model', 'type', 'cc', 'color', 'km', 'year', 'price', 'url']
 
 	print 'Start time: %s' % datetime.now()
 	print 'num_ads %d' %num_ads
@@ -37,6 +37,7 @@ def scraper_motos():
 			links_list = sub_soup.find_all("a", {"class": "lnkad"}, href = True)
 			for link in links_list:
 				link_req = requests.get("http://motos.net" + link['href'])
+				ad_url = "http://motos.net" + link['href']
 				link_soup = BeautifulSoup(link_req.text, "html.parser")			
 				#If the ad exists, there is a h1 tag with class 'mgbottom10 floatleft'
 				if len(link_soup.find_all("h1", class_= 'mgbottom10 floatleft')) != 0:				
@@ -83,7 +84,7 @@ def scraper_motos():
 							bike_year = ''
 							#print "year error in http://motos.coches.net" + link['href']
 						
-						matrioska_tb.append([bike_city, bike_brand, bike_model, bike_type, bike_cc, bike_color, bike_km, bike_year, bike_price])
+						matrioska_tb.append([bike_city, bike_brand, bike_model, bike_type, bike_cc, bike_color, bike_km, bike_year, bike_price, ad_url])
 
 	print 'End time: %s' % datetime.now()
 	matrioska_df = pd.DataFrame(matrioska_tb, columns = matrioska_header)
