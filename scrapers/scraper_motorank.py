@@ -27,5 +27,5 @@ def scraper_moto_rank():
 	    complete_brand_list += brand_list
 	    
 	complete_brand_df = pd.DataFrame(complete_brand_list, columns = ['brand', 'brand_score'])
-	complete_brand_df.to_csv('rank_moto_brands_2.csv', sep = ';')
+	complete_brand_df.to_csv('raw_data/rank_moto_brands_2.csv', sep = ';', index = False)
 	#return complete_brand_df

@@ -88,4 +88,5 @@ def scraper_motos():
 
 	print 'End time: %s' % datetime.now()
 	matrioska_df = pd.DataFrame(matrioska_tb, columns = matrioska_header)
-	return matrioska_df
+	matrioska_df.to_csv('raw_data/rank_moto_brands_2.csv', sep = ';', index = False)
+	#return matrioska_df
