@@ -3,7 +3,7 @@
 
 #Scraper motorcycles rank
 
-def scraper_moto_rank():
+def scraper_moto_brands_rank():
 	from datetime import datetime
 	import pandas as pd
 	from bs4 import BeautifulSoup
@@ -27,5 +27,5 @@ def scraper_moto_rank():
 	    complete_brand_list += brand_list
 	    
 	complete_brand_df = pd.DataFrame(complete_brand_list, columns = ['brand', 'brand_score'])
-	complete_brand_df.to_csv('../scraped_data/rank_moto_brands_2.csv', sep = ';', index = False)
+	complete_brand_df.to_csv('../scraped_data/rank_moto_brands.csv', sep = ';', index = False)
 	#return complete_brand_df

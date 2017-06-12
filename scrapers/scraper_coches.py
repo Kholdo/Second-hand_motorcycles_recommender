@@ -118,4 +118,5 @@ def Scraper_coches():
 
 	print 'End time: %s' % datetime.now()
 	matrioska_df = pd.DataFrame(matrioska_tb, columns = matrioska_header)
-	return matrioska_df
+	matrioska_df.to_csv('../scraped_data/coches_raw_data.csv', sep = ';', index = False)
+	#return matrioska_df
