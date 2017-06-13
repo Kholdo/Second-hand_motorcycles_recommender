@@ -88,5 +88,5 @@ def scraper_motos():
 
 	print 'End time: %s' % datetime.now()
 	matrioska_df = pd.DataFrame(matrioska_tb, columns = matrioska_header)
-	matrioska_df.to_csv('../scraped_data/motos_raw_data.csv', sep = ';', index = False)
+	matrioska_df.to_csv('../scraped_data/motos_raw_data.csv', sep = ';', index = False, encoding = 'utf-8')
 	#return matrioska_df
