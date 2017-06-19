@@ -3,10 +3,10 @@ class Recommender:
 	def __init__(self, user_city, user_brand, user_type, user_year, k):
 		import pandas as pd
 		self.k = k
-		self.data = pd.read_csv('df_motos_raw_coord_brand_type.csv', sep=',', encoding='utf-8')		
-		self.location_coords = pd.read_csv('auxiliary_data/locations_coords.csv', sep=',')
-		self.brands_rank = pd.read_csv('scraped_data/rank_moto_brands.csv', sep=';')
-		self.types_rank = pd.read_csv('auxiliary_data/rank_moto_types.csv', sep=';')
+		self.data = pd.read_csv('../df_motos_raw_coord_brand_type.csv', sep=',', encoding='utf-8')		
+		self.location_coords = pd.read_csv('../auxiliary_data/locations_coords.csv', sep=',')
+		self.brands_rank = pd.read_csv('../scraped_data/rank_moto_brands.csv', sep=';')
+		self.types_rank = pd.read_csv('../auxiliary_data/rank_moto_types.csv', sep=';')
 
 		self.city = user_city
 		self.brand = user_brand
@@ -24,6 +24,8 @@ class Recommender:
 		self.weight_year = 10
 		self.weight_city = 10
 		self.total_weight = self.weight_brand + self.weight_type + self.weight_year + self.weight_city
+
+
 
 	def user_location_coords(self):
 		"""

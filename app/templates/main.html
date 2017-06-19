@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Find your motorcycle</title>
+
+<style>
+	table {
+	    font-family: arial, sans-serif;
+	    border-collapse: collapse;
+	    width: 100%;
+	}
+
+	td, th {
+	    border: 1px solid #dddddd;
+	    text-align: left;
+	    padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	    background-color: #ffc05b;
+	}
+</style>
+</head>
+<body>
+	<h1>{{ title }}</h1>
+	<h2>{{ subtitle }}</h2>
+	<hr />	
+
+	<form name="user_data" action="/" method="POST">
+
+		<select name="cities">
+			{% for city in cities_list %}
+	  		<option value="{{ city }}">{{ city }}</option>
+	  		{% endfor %}
+		</select>
+
+		<select name="brands">
+			{% for brand in brands_list %}
+	  		<option value="{{ brand }}">{{ brand }}</option>
+	  		{% endfor %}
+		</select>
+
+		<select name="types">
+			{% for type in types_list %}
+  			<option value="{{ type }}">{{ type }}</option>
+  			{% endfor %}
+		</select>
+
+		<select name="years">
+			{% for year in years_list %}
+  			<option value="{{ year }}">{{ year }}</option>
+  			{% endfor %}
+		</select>
+		<!-- use this for server-side processing -->
+		<input type="submit" name="submit" value="Find'em all!" />
+
+	</form>
+	<hr />
+
+	<h2>Results obtained for {{ query_city }}, {{ query_brand }}, {{ query_type }}, {{ query_year }}</h2>
+	<hr />
+
+<table>
+	<tr>
+		<th>City</th>
+		<th>Brand</th>
+		<th>Model</th>
+		<th>Type</th>
+		<th>Color</th>
+		<th>Km</th>
+		<th>Year</th>
+		<th>Price</th>
+		<th>url</th>
+	</tr>
+	{% for add in res %}
+	<tr>
+		<td>{{ add[0] }}</td>
+		<td>{{ add[1] }}</td>
+		<td>{{ add[2] }}</td>
+		<td>{{ add[3] }}</td>
+		<td>{{ add[4] }}</td>
+		<td>{{ add[5] }}</td>
+		<td>{{ add[6] }}</td>
+		<td>{{ add[7] }}</td>
+		<td><b><a href="{{ add[8] }}" target="_blank">add link</a></b></td>
+	</tr>
+	{% endfor %}
+</table>
+
+
+</body>
+</html>
