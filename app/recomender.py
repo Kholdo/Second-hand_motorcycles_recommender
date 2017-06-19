@@ -19,16 +19,15 @@ def message():
 	query_type = request.form.get("types")
 	query_year = request.form.get("years")
 	
-	r = Recommender(query_city, query_brand, query_type, int(query_year), 20)
+	#r = Recommender(query_city, query_brand, query_type, 2017, 20)
+	r = Recommender('barcelona', 'bmw', 'custom', 2010, 20)
 
 	title= "Motorcycle Recommender"
 	subtitle = "The best and simplest one in the whole world wide web"
 
-	#res = [['bmw1', 'custom', 2014, 'madrid', 'http://as.com/'],['bmw2', 'custom', 2013, 'madrid','http://as.com/']]
 	res = r.recommender().values.tolist()
 	if res == []:
 		res = ['noData']
-	#brands_list = ['bmw', 'yamaha', 'honda']
 
 	return render_template("main.html", res = res, title = title, subtitle=subtitle, 
 							brands_list = brands_list, types_list=types_list, 

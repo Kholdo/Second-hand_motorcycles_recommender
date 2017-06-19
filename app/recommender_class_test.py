@@ -15,7 +15,10 @@ class Recommender:
 		self.lat = self.user_location_coords()[0]
 		self.lon = self.user_location_coords()[1]
 
-		self.brand_score = int(self.brands_rank[self.brands_rank['brand'] == self.brand].brand_score)
+		if self.brands_rank[self.brands_rank['brand'] == self.brand].brand_score.empty:
+			self.brand_score = 0
+		else:
+			self.brand_score = int(self.brands_rank[self.brands_rank['brand'] == self.brand].brand_score)
 		self.type_score = int(self.types_rank[self.types_rank['type'] == self.type].type_score)
 		self.scores = [self.brand_score, self.type_score, self.year]
 
