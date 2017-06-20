@@ -19,8 +19,8 @@ def message():
 	query_type = request.form.get("types")
 	query_year = request.form.get("years")
 	
-	#r = Recommender(query_city, query_brand, query_type, 2017, 20)
-	r = Recommender('barcelona', 'bmw', 'custom', 2010, 20)
+	#r = Recommender(query_city, query_brand, int(query_year), 2017, 20)
+	r = Recommender('madrid', 'bmw', 'custom', 2010, 20)
 
 	title= "Motorcycle Recommender"
 	subtitle = "The best and simplest one in the whole world wide web"
@@ -32,7 +32,8 @@ def message():
 	return render_template("main.html", res = res, title = title, subtitle=subtitle, 
 							brands_list = brands_list, types_list=types_list, 
 							years_list = years_list, cities_list=cities_list,
-							query_city=query_city, query_brand=query_brand, query_type=query_type, query_year=query_year)
+							query_city=query_city, query_brand=query_brand, 
+							query_type=query_type, query_year=query_year)
 
 if __name__ == '__main__':
 	app.run(port=5000, debug=True)
