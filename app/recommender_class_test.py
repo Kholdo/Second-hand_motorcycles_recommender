@@ -50,7 +50,7 @@ class Recommender:
 	    
 	    :return: The value in kilometers of the distance between the two cities.
 	    
-	    Usage of the Vicenty distance
+	    Usage of the Vincenty distance
 	    """
 	    
 	    from geopy.distance import vincenty
