@@ -2,7 +2,6 @@ import pandas as pd
 from flask import Flask
 from flask import render_template
 from flask import request
-from flask_bootstrap import Bootstrap
 from recommender_class_test import Recommender
 
 data = pd.read_csv('../df_motos_raw_coord_brand_type.csv', sep=',', encoding='utf-8')
@@ -12,8 +11,7 @@ years_list = sorted(data['year'].unique())
 cities_list = sorted(data['city'].unique())
 
 app = Flask(__name__)
-# Install our Bootstrap extension
-Bootstrap(app)
+
 
 @app.route("/", methods=['GET', 'POST'])
 def message():
