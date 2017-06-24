@@ -11,7 +11,7 @@ class Recommender:
 		self.city = user_city
 		self.brand = user_brand
 		self.type = user_type
-		self.year = user_year
+		self.year = int(user_year)
 		self.lat = self.user_location_coords()[0]
 		self.lon = self.user_location_coords()[1]
 
@@ -78,7 +78,11 @@ class Recommender:
 
 		for i, element in enumerate(['brand', 'type', 'year']):
 			new_column = element + '_metric'
-			self.data[new_column] = self.data.apply(lambda row: self.distance_abs_value(int(row[score_columns[i]]), self.scores[i]), axis=1)
+			print new_column
+			try:
+				self.data[new_column] = self.data.apply(lambda row: self.distance_abs_value(int(row[score_columns[i]]), self.scores[i]), axis=1)
+			except TypeError:
+				print new_column
 
 		self.data['total_metric_pond'] = self.data.apply(lambda row: self.w_s(row['city_metric'], row['brand_metric'], row['type_metric'], row['year_metric']), axis = 1)
 
