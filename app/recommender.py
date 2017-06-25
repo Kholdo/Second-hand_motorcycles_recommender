@@ -1,3 +1,5 @@
+__author__ = 'kholdo'
+
 import pandas as pd
 from flask import Flask
 from flask import render_template
@@ -11,7 +13,6 @@ years_list = sorted(data['year'].unique())
 cities_list = sorted(data['city'].unique())
 
 app = Flask(__name__)
-
 
 @app.route("/", methods=['GET', 'POST'])
 def message():
