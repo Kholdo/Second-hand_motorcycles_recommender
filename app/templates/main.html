@@ -44,27 +44,27 @@
 	</div>
 <table class="table table-striped">
 	<tr>
-		<th>City</th>
-		<th>Brand</th>
-		<th>Model</th>
-		<th>Type</th>
-		<th>Color</th>
-		<th>Km</th>
-		<th>Year</th>
-		<th>Price</th>
-		<th>url</th>
+		<th class="text-center">City</th>
+		<th class="text-center">Brand</th>
+		<th class="text-center">Model</th>
+		<th class="text-center">Type</th>
+		<th class="text-center">Color</th>
+		<th class="text-center">Km</th>
+		<th class="text-center">Year</th>
+		<th class="text-center">Price</th>
+		<th class="text-center">url</th>
 	</tr>
 	{% for add in res %}
 	<tr>
-		<td>{{ add[0] }}</td>
-		<td>{{ add[1] }}</td>
-		<td>{{ add[2] }}</td>
-		<td>{{ add[3] }}</td>
-		<td>{{ add[4] }}</td>
-		<td>{{ add[5] }}</td>
-		<td>{{ add[6] }}</td>
-		<td>{{ add[7] }}</td>
-		<td><b><a href="{{ add[8] }}" target="_blank">ad link</a></b></td>
+		<td class="text-center">{{ add[0] }}</td>
+		<td class="text-center">{{ add[1] }}</td>
+		<td class="text-center">{{ add[2] }}</td>
+		<td class="text-center">{{ add[3] }}</td>
+		<td class="text-center">{{ add[4] }}</td>
+		<td class="text-center">{{ add[5] }}</td>
+		<td class="text-center">{{ add[6] }}</td>
+		<td class="text-center">{{ add[7] }}</td>
+		<td class="text-center"><b><a href="{{ add[8] }}" target="_blank">ad link</a></b></td>
 	</tr>
 	{% endfor %}
 </table>
