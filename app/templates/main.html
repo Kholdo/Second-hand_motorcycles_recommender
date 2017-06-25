@@ -7,33 +7,33 @@
 	<h2>{{ subtitle }}</h2>
 	<hr />	
 
-	<form name="user_data" action="/" method="POST">
+	<form class="navbar-form navbar-left" name="user_data" action="/" method="POST">
 
-		<select name="cities">
+		<select class="selectpicker form-control" name="cities">
 			{% for city in cities_list %}
 	  		<option value="{{ city }}">{{ city }}</option>
 	  		{% endfor %}
 		</select>
 
-		<select name="brands">
+		<select class="selectpicker form-control" name="brands">
 			{% for brand in brands_list %}
 	  		<option value="{{ brand }}">{{ brand }}</option>
 	  		{% endfor %}
 		</select>
 
-		<select name="types">
+		<select class="selectpicker form-control" name="types">
 			{% for type in types_list %}
   			<option value="{{ type }}">{{ type }}</option>
   			{% endfor %}
 		</select>
 
-		<select name="years">
+		<select class="selectpicker form-control" name="years">
 			{% for year in years_list %}
   			<option value="{{ year }}">{{ year }}</option>
   			{% endfor %}
 		</select>
-		<!-- use this for server-side processing -->
-		<input type="submit" name="submit" value="Find'em all!" />
+
+		<input type="submit" class="btn btn-primary" name="submit" value="Find'em all!" />
 
 	</form>
 	<hr />
@@ -41,7 +41,7 @@
 	<h2>Results obtained for {{ query_city }}, {{ query_brand }}, {{ query_type }}, {{ query_year }}</h2>
 	<hr />
 
-<table>
+<table class="table table-striped">
 	<tr>
 		<th>City</th>
 		<th>Brand</th>
