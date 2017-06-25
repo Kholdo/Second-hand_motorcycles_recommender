@@ -7,6 +7,7 @@ class Recommender:
 		self.location_coords = pd.read_csv('../auxiliary_data/locations_coords.csv', sep=',')
 		self.brands_rank = pd.read_csv('../auxiliary_data/rank_moto_brands.csv', sep=';')
 		self.types_rank = pd.read_csv('../auxiliary_data/rank_moto_types.csv', sep=';')
+		# TODO cambiar de directorio los csv. Ponerlos en static/csv
 
 		self.city = user_city
 		self.brand = user_brand
