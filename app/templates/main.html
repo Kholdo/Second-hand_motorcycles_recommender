@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Find your motorcycle!pip</title>
-	<link rel="icon" href="{{ url_for('static', filename='images/helmet.png') }}" type="image/x-icon"/>
+{% extends "bootstrap/base.html" %}
 
-<style>
-	table {
-	    font-family: arial, sans-serif;
-	    border-collapse: collapse;
-	    width: 100%;
-	}
+<link rel="icon" href="{{ url_for('static', filename='images/helmet.png') }}" type="image/x-icon"/>
 
-	td, th {
-	    border: 1px solid #dddddd;
-	    text-align: left;
-	    padding: 8px;
-	}
-
-	tr:nth-child(even) {
-	    background-color: #ffc05b;
-	}
-</style>
-</head>
-<body>
+{% block content %}
 	<h1>{{ title }}</h1>
 	<h2>{{ subtitle }}</h2>
 	<hr />	
@@ -88,7 +67,4 @@
 	</tr>
 	{% endfor %}
 </table>
-
-
-</body>
-</html>
+{% endblock %}
