@@ -10,26 +10,26 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<form class="form-inline" name="user_data" action="/" method="POST">
-				<label for="cities">city:</label>
+			<form class="form-inline text-center" name="user_data" action="/" method="POST">
+				<label for="cities">City:</label>
 				<select class="selectpicker form-control" name="cities">
 					{% for city in cities_list %}
 					<option value="{{ city }}">{{ city }}</option>
 					{% endfor %}
 				</select>
-				<label for="brands">brand:</label>
+				<label for="brands">Brand:</label>
 				<select class="selectpicker form-control" name="brands">
 					{% for brand in brands_list %}
 					<option value="{{ brand }}">{{ brand }}</option>
 					{% endfor %}
 				</select>
-				<label for="types">type:</label>
+				<label for="types">Type:</label>
 				<select class="selectpicker form-control" name="types">
 					{% for type in types_list %}
 					<option value="{{ type }}">{{ type }}</option>
 					{% endfor %}
 				</select>
-				<label for="years">year:</label>
+				<label for="years">Year:</label>
 				<select class="selectpicker form-control" name="years">
 					{% for year in years_list %}
 					<option value="{{ year }}">{{ year }}</option>
