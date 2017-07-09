@@ -7,7 +7,7 @@ from flask import request
 from flask_bootstrap import Bootstrap
 from recommender_class_test import Recommender
 
-data = pd.read_csv('../df_motos_raw_coord_brand_type.csv', sep=',', encoding='utf-8')
+data = pd.read_csv('../app/static/data/df_motos_raw_coord_brand_type.csv', sep=',', encoding='utf-8')
 brands_list = sorted(data['brand'].unique())
 types_list = sorted(data['type'].unique())
 years_list = sorted(data['year'].unique())
