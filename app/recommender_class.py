@@ -11,10 +11,10 @@ class Recommender:
 
 		import pandas as pd
 		self.k = k
-		self.data = pd.read_csv('../app/static/data/df_motos_raw_coord_brand_type.csv', sep=',', encoding='utf-8')
+		self.data = pd.read_csv('app/static/data/df_motos_raw_coord_brand_type.csv', sep=',', encoding='utf-8')
 		#self.location_coords = pd.read_csv('../auxiliary_data/locations_coords.csv', sep=',')
-		self.brands_rank = pd.read_csv('../auxiliary_data/rank_moto_brands.csv', sep=';')
-		self.types_rank = pd.read_csv('../auxiliary_data/rank_moto_types.csv', sep=';')
+		self.brands_rank = pd.read_csv('auxiliary_data/rank_moto_brands_plus.csv', sep=';')
+		self.types_rank = pd.read_csv('auxiliary_data/rank_moto_types.csv', sep=';')
 
 		self.city = user_city
 		self.brand = user_brand
