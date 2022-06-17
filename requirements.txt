@@ -6,7 +6,7 @@ jupyter==1.0.0
 jupyter-client==5.1.0
 jupyter-console==5.1.0
 jupyter-core==4.3.0
-numpy==1.13.0
+numpy==1.21.0
 pandas==0.20.2
 request==0.0.0
 requests==2.20.0
